@@ -11,6 +11,35 @@ a {
   text-decoration: none;
 }
 
+/* Estilos para tema claro (padrão) */
+body.light {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --primary-color: #0070f3;
+  --secondary-color: #00bcd4;
+  --card-bg: #ffffff;
+  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --header-bg: linear-gradient(135deg, #0070f3, #00bcd4);
+}
+
+/* Estilos para tema escuro */
+body.dark {
+  --bg-color: #121212;
+  --text-color: #e0e0e0;
+  --primary-color: #3291ff;
+  --secondary-color: #29b6f6;
+  --card-bg: #1e1e1e;
+  --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  --header-bg: linear-gradient(135deg, #1a1a2e, #162447);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+
 * {
   box-sizing: border-box;
 }

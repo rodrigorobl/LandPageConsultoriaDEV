@@ -2,10 +2,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import { useTheme } from "../context/ThemeContext";
 
 const Home: NextPage = () => {
+  const { theme, toggleTheme } = useTheme();
+  
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${theme}`}>
       <Head>
         <title>TechSolutions - Consultoria em Software, IA e Automação</title>
         <meta name="description" content="Consultoria especializada em desenvolvimento de software, gestão de IAs e automações para potencializar seu negócio" />
@@ -22,6 +25,9 @@ const Home: NextPage = () => {
           <a href="#diferenciais">Diferenciais</a>
           <a href="#contato">Contato</a>
           <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Consultoria+TechSolutions&details=Agendar+reunião+para+discutir+serviços+de+consultoria&location=Online&add=rodrigo.augusto.r21@gmail.com" target="_blank" rel="noopener noreferrer" className={styles.cta}>Agendar Consulta</a>
+          <button onClick={toggleTheme} className={styles.themeToggle}>
+            {theme === 'light' ? '🌙' : '☀️'}
+          </button>
         </nav>
       </header>
 
