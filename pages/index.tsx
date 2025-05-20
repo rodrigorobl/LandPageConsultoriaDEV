@@ -1,9 +1,59 @@
 
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  useEffect(() => {
+    // Carrossel de imagens
+    const track = document.querySelector(`.${styles.carouselTrack}`) as HTMLElement;
+    const slides = Array.from(document.querySelectorAll(`.${styles.carouselSlide}`));
+    const nextButton = document.querySelector(`.${styles.carouselNext}`) as HTMLElement;
+    const prevButton = document.querySelector(`.${styles.carouselPrev}`) as HTMLElement;
+    
+    if (!track || !slides.length || !nextButton || !prevButton) return;
+    
+    let currentIndex = 0;
+    
+    // Configura posição inicial
+    slides.forEach((slide, index) => {
+      (slide as HTMLElement).style.transform = `translateX(${100 * index}%)`;
+    });
+    
+    // Move para o slide anterior
+    const moveToPrev = () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      moveToSlide();
+    };
+    
+    // Move para o próximo slide
+    const moveToNext = () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      moveToSlide();
+    };
+    
+    // Move para o slide específico
+    const moveToSlide = () => {
+      slides.forEach((slide, index) => {
+        (slide as HTMLElement).style.transform = `translateX(${100 * (index - currentIndex)}%)`;
+      });
+    };
+    
+    // Adiciona event listeners aos botões
+    nextButton.addEventListener('click', moveToNext);
+    prevButton.addEventListener('click', moveToPrev);
+    
+    // Auto-play do carrossel
+    const autoPlay = setInterval(moveToNext, 5000);
+    
+    // Limpa o intervalo quando o componente é desmontado
+    return () => {
+      clearInterval(autoPlay);
+      nextButton.removeEventListener('click', moveToNext);
+      prevButton.removeEventListener('click', moveToPrev);
+    };
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -60,6 +110,36 @@ const Home: NextPage = () => {
               <h3>Análise de Dados</h3>
               <p>Transformamos dados em informações acionáveis com dashboards personalizados e relatórios inteligentes para impulsionar seu negócio.</p>
             </div>
+          </div>
+        </section>
+
+        <section id="carousel" className={styles.carousel}>
+          <h2 className={styles.sectionTitle}>Nossas Soluções</h2>
+          <div className={styles.carouselContainer}>
+            <div className={styles.carouselTrack}>
+              <div className={styles.carouselSlide}>
+                <img src="/images/software-dev-1.jpg" alt="Desenvolvimento de Software" />
+                <div className={styles.carouselCaption}>Desenvolvimento de Software</div>
+              </div>
+              <div className={styles.carouselSlide}>
+                <img src="/images/ai-1.jpg" alt="Inteligência Artificial" />
+                <div className={styles.carouselCaption}>Inteligência Artificial</div>
+              </div>
+              <div className={styles.carouselSlide}>
+                <img src="/images/automation-1.jpg" alt="Automação de Processos" />
+                <div className={styles.carouselCaption}>Automação de Processos</div>
+              </div>
+              <div className={styles.carouselSlide}>
+                <img src="/images/code-1.jpg" alt="Desenvolvimento de Código" />
+                <div className={styles.carouselCaption}>Soluções Personalizadas</div>
+              </div>
+              <div className={styles.carouselSlide}>
+                <img src="/images/tech-1.jpg" alt="Tecnologia" />
+                <div className={styles.carouselCaption}>Consultoria Técnica</div>
+              </div>
+            </div>
+            <button className={styles.carouselPrev}>&lt;</button>
+            <button className={styles.carouselNext}>&gt;</button>
           </div>
         </section>
 
