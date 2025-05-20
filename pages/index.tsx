@@ -17,28 +17,27 @@ const Home: NextPage = () => {
     let currentIndex = 0;
     
     // Configura posição inicial
-    const updateSlides = () => {
-      slides.forEach((slide, index) => {
-        const element = slide as HTMLElement;
-        element.style.transform = `translateX(${100 * (index - currentIndex)}%)`;
-        element.style.position = 'absolute';
-        element.style.transition = 'transform 0.5s ease';
-        element.style.width = '100%';
-      });
-    };
-    
-    updateSlides();
+    slides.forEach((slide, index) => {
+      (slide as HTMLElement).style.transform = `translateX(${100 * index}%)`;
+    });
     
     // Move para o slide anterior
     const moveToPrev = () => {
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateSlides();
+      moveToSlide();
     };
     
     // Move para o próximo slide
     const moveToNext = () => {
       currentIndex = (currentIndex + 1) % slides.length;
-      updateSlides();
+      moveToSlide();
+    };
+    
+    // Move para o slide específico
+    const moveToSlide = () => {
+      slides.forEach((slide, index) => {
+        (slide as HTMLElement).style.transform = `translateX(${100 * (index - currentIndex)}%)`;
+      });
     };
     
     // Adiciona event listeners aos botões

@@ -173,7 +173,7 @@
 
 .carouselSlide {
   flex: 0 0 100%;
-  position: relative;
+  position: absolute;
   width: 100%;
   transition: transform 0.5s ease;
 }
