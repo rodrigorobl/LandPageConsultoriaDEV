@@ -21,7 +21,7 @@ const Home: NextPage = () => {
           <a href="#sobre">Sobre</a>
           <a href="#diferenciais">Diferenciais</a>
           <a href="#contato">Contato</a>
-          <a href="#" className={styles.cta}>Agendar Consulta</a>
+          <a href="https://calendar.google.com/calendar/u/0/r/eventedit?text=Consultoria+TechSolutions&details=Agendar+reunião+para+discutir+serviços+de+consultoria&location=Online&add=rodrigo.augusto.r21@gmail.com" target="_blank" rel="noopener noreferrer" className={styles.cta}>Agendar Consulta</a>
         </nav>
       </header>
 
