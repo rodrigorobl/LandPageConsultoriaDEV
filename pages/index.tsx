@@ -98,40 +98,14 @@ const Home: NextPage = () => {
         <section id="contato" className={styles.contact}>
           <h2 className={styles.sectionTitle}>Entre em Contato</h2>
           <div className={styles.contactContainer}>
-            <form className={styles.contactForm} onSubmit={async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.currentTarget);
-            const formValues = {
-              nome: formData.get('nome'),
-              email: formData.get('email'),
-              telefone: formData.get('telefone'),
-              mensagem: formData.get('mensagem'),
-            };
-            
-            try {
-              // Enviar dados para a API
-              const response = await fetch('/api/submit-form', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formValues),
-              });
-              
-              const data = await response.json();
-              
-              if (data.success) {
-                alert(data.message);
-                // Limpar o formulário após envio bem-sucedido
-                e.currentTarget.reset();
-              } else {
-                alert(`Erro: ${data.message}`);
-              }
-            } catch (error) {
-              console.error('Erro ao enviar formulário:', error);
-              alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
-            }
-          }}>
+            <form 
+              className={styles.contactForm} 
+              action="https://formcarry.com/s/4dwcmws5VUl" 
+              method="POST"
+              onSubmit={() => {
+                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+              }}
+            >>
               <div className={styles.formGroup}>
                 <label htmlFor="nome">Nome</label>
                 <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
