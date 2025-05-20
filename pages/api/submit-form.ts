@@ -1,5 +1,6 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
+import nodemailer from 'nodemailer';
 
 type FormData = {
   nome: string;
@@ -13,7 +14,16 @@ type ResponseData = {
   message: string;
 };
 
-export default function handler(
+// Configurar o transportador de email
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'rodrigo.augusto.r21@gmail.com', // Seu email gmail
+    pass: process.env.EMAIL_PASSWORD // Senha de app para seu email (deve ser configurada em Secrets)
+  }
+});
+
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ResponseData>
 ) {
@@ -24,17 +34,40 @@ export default function handler(
   try {
     const { nome, email, telefone, mensagem } = req.body as FormData;
     
-    // Aqui você pode implementar a lógica para enviar o email
-    // usando serviços como SendGrid, Mailgun, AWS SES, etc.
-    
-    // Simulando processamento
+    // Log dos dados recebidos
     console.log('Formulário recebido:', { nome, email, telefone, mensagem });
     
-    // Resposta de sucesso
-    res.status(200).json({ 
-      success: true, 
-      message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.'
-    });
+    // Configurar o email
+    const mailOptions = {
+      from: '"Site TechSolutions" <rodrigo.augusto.r21@gmail.com>',
+      to: 'rodrigo.augusto.r21@gmail.com', // Destinatário
+      subject: `Nova mensagem de ${nome}`,
+      html: `
+        <h1>Nova mensagem do formulário de contato</h1>
+        <p><strong>Nome:</strong> ${nome}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Telefone:</strong> ${telefone || 'Não informado'}</p>
+        <h2>Mensagem:</h2>
+        <p>${mensagem}</p>
+      `
+    };
+
+    try {
+      // Tentar enviar o email
+      await transporter.sendMail(mailOptions);
+      
+      // Resposta de sucesso
+      res.status(200).json({ 
+        success: true, 
+        message: 'Mensagem enviada com sucesso! Entraremos em contato em breve.'
+      });
+    } catch (emailError) {
+      console.error('Erro ao enviar email:', emailError);
+      res.status(500).json({ 
+        success: false, 
+        message: 'Não foi possível enviar o email. Por favor, tente novamente mais tarde.'
+      });
+    }
   } catch (error) {
     console.error('Erro ao processar formulário:', error);
     res.status(500).json({ 
