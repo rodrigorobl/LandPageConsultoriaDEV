@@ -275,6 +275,13 @@
   resize: vertical;
 }
 
+.formStatus {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+}
+
 .contactInfo {
   background-color: #f9f9f9;
   padding: 2rem;

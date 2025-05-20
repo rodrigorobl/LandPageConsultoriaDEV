@@ -98,7 +98,22 @@ const Home: NextPage = () => {
         <section id="contato" className={styles.contact}>
           <h2 className={styles.sectionTitle}>Entre em Contato</h2>
           <div className={styles.contactContainer}>
-            <form className={styles.contactForm}>
+            <form className={styles.contactForm} onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            const formValues = {
+              nome: formData.get('nome'),
+              email: formData.get('email'),
+              telefone: formData.get('telefone'),
+              mensagem: formData.get('mensagem'),
+            };
+            
+            // Aqui simulamos o envio da mensagem
+            alert(`Mensagem enviada com sucesso!\n\nNome: ${formValues.nome}\nEmail: ${formValues.email}\nTelefone: ${formValues.telefone}\nMensagem: ${formValues.mensagem}`);
+            
+            // Limpar o formulário após envio
+            e.currentTarget.reset();
+          }}>
               <div className={styles.formGroup}>
                 <label htmlFor="nome">Nome</label>
                 <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
@@ -116,6 +131,9 @@ const Home: NextPage = () => {
                 <textarea id="mensagem" name="mensagem" placeholder="Como podemos ajudar?" required></textarea>
               </div>
               <button type="submit" className={styles.submitBtn}>Enviar Mensagem</button>
+              <div className={styles.formStatus}>
+                <p>Sua mensagem será respondida em até 24 horas úteis.</p>
+              </div>
             </form>
             <div className={styles.contactInfo}>
               <h3>Outras formas de contato</h3>
