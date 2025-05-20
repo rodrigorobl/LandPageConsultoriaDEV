@@ -98,7 +98,7 @@ const Home: NextPage = () => {
         <section id="contato" className={styles.contact}>
           <h2 className={styles.sectionTitle}>Entre em Contato</h2>
           <div className={styles.contactContainer}>
-            <form className={styles.contactForm} onSubmit={(e) => {
+            <form className={styles.contactForm} onSubmit={async (e) => {
             e.preventDefault();
             const formData = new FormData(e.currentTarget);
             const formValues = {
@@ -108,11 +108,29 @@ const Home: NextPage = () => {
               mensagem: formData.get('mensagem'),
             };
             
-            // Aqui simulamos o envio da mensagem
-            alert(`Mensagem enviada com sucesso!\n\nNome: ${formValues.nome}\nEmail: ${formValues.email}\nTelefone: ${formValues.telefone}\nMensagem: ${formValues.mensagem}`);
-            
-            // Limpar o formulário após envio
-            e.currentTarget.reset();
+            try {
+              // Enviar dados para a API
+              const response = await fetch('/api/submit-form', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formValues),
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert(data.message);
+                // Limpar o formulário após envio bem-sucedido
+                e.currentTarget.reset();
+              } else {
+                alert(`Erro: ${data.message}`);
+              }
+            } catch (error) {
+              console.error('Erro ao enviar formulário:', error);
+              alert('Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.');
+            }
           }}>
               <div className={styles.formGroup}>
                 <label htmlFor="nome">Nome</label>
