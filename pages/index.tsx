@@ -1,4 +1,3 @@
-
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
@@ -111,7 +110,7 @@ const Home: NextPage = () => {
               onSubmit={() => {
                 alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
               }}
-            >>
+            >
               <div className={styles.formGroup}>
                 <label htmlFor="nome">Nome</label>
                 <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
