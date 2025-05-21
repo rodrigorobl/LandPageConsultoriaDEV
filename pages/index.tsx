@@ -134,9 +134,21 @@ const Home: NextPage = () => {
             </form>
             <div className={styles.contactInfo}>
               <h3>Outras formas de contato</h3>
-              <p><strong>Email:</strong> contato@techsolutions.com.br</p>
-              <p><strong>Telefone:</strong> (11) 9999-9999</p>
-              <p><strong>Endereço:</strong> Av. Paulista, 1000 - São Paulo, SP</p>
+              <p><strong>Email:</strong> rodrigo.augusto.r21@gmail.com</p>
+              <p><strong>Telefone:</strong> (062) 99997-2107</p>
+              <a 
+                href="https://wa.me/5562999972107" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={styles.whatsappButton}
+                aria-label="Falar pelo WhatsApp"
+              >
+                <img 
+                  src="/images/whatsapp-icon.svg" 
+                  alt="WhatsApp" 
+                  className={styles.whatsappIcon}
+                />
+              </a>
             </div>
           </div>
         </section>
