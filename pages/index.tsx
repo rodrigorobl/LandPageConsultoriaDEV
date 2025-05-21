@@ -157,9 +157,8 @@ const Home: NextPage = () => {
       <footer className={styles.footer}>
         <p>&copy; 2023 TechSolutions. Todos os direitos reservados.</p>
         <div className={styles.socialLinks}>
-          <a href="#" aria-label="LinkedIn">LinkedIn</a>
-          <a href="#" aria-label="Instagram">Instagram</a>
-          <a href="#" aria-label="Twitter">Twitter</a>
+          <a href="https://www.linkedin.com/in/rodrigo-augusto-robl/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+          <a href="https://instagram.com/rodrigorobl" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
         </div>
       </footer>
     </div>
