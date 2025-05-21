@@ -1,24 +1,24 @@
-Welcome to the NextJS base template bootstrapped using the `create-next-app`. This template supports TypeScript, but you can use normal JavaScript as well.
+Bem-vindo ao template base NextJS inicializado usando o `create-next-app`. Este template suporta TypeScript, mas você também pode usar JavaScript normal.
 
-## Getting Started
+## Começando
 
-Hit the run button to start the development server.
+Clique no botão executar para iniciar o servidor de desenvolvimento.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Você pode começar a editar a página modificando `pages/index.tsx`. A página atualiza automaticamente conforme você edita o arquivo.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on `/api/hello`. This endpoint can be edited in `pages/api/hello.ts`.
+As [rotas da API](https://nextjs.org/docs/api-routes/introduction) podem ser acessadas em `/api/hello`. Este endpoint pode ser editado em `pages/api/hello.ts`.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+O diretório `pages/api` é mapeado para `/api/*`. Os arquivos neste diretório são tratados como [rotas da API](https://nextjs.org/docs/api-routes/introduction) em vez de páginas React.
 
-## Learn More
+## Saiba Mais
 
-To learn more about Next.js, take a look at the following resources:
+Para aprender mais sobre Next.js, dê uma olhada nos seguintes recursos:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Documentação do Next.js](https://nextjs.org/docs) - aprenda sobre as funcionalidades e API do Next.js.
+- [Aprenda Next.js](https://nextjs.org/learn) - um tutorial interativo de Next.js.
 
-## Productionizing your Next App
+## Colocando seu App Next em Produção
 
-To make your next App run smoothly in production make sure to deploy your project with [Repl Deployments](https://docs.replit.com/hosting/deployments/about-deployments)!
+Para fazer seu App Next funcionar perfeitamente em produção, certifique-se de implantar seu projeto com [Repl Deployments](https://docs.replit.com/hosting/deployments/about-deployments)!
 
-You can also produce a production build by running `npm run build` and [changing the run command](https://docs.replit.com/programming-ide/configuring-repl#run) to `npm run start`.
+Você também pode gerar uma build de produção executando `npm run build` e [alterando o comando de execução](https://docs.replit.com/programming-ide/configuring-repl#run) para `npm run start`.
